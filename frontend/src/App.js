@@ -1,23 +1,60 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-// import ForgotPassword from "./components/ForgotPassword";
-import Dashboard from "./components/Dashboard";
-import Navbar from "./components/Navbar"; // Optional Navbar
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import OpportunityList from './components/opportunities/OpportunityList';
+import OpportunityDetail from './components/opportunities/OpportunityDetail';
+import CreateOpportunity from './components/opportunities/CreateOpportunity';
+import './App.css';
+import './index.css';
 
 function App() {
-  return (
-    <Router>
-      <Navbar /> {/* Common Navbar for navigation (optional) */}
-      <Routes>
-        <Route path="/" element={<Login />} />  {/* Default route to Login */}
-        <Route path="/signup" element={<Signup />} />
-        {/* <Route path="/forgot-password" element={<ForgotPassword />} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
-  );
+    const isAuthenticated = !!localStorage.getItem('token');
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        window.location.reload();
+    };
+
+    return (
+        <Router>
+            <div className="app">
+                <nav className="navbar">
+                    <div className="nav-brand">
+                        <Link to="/">Volunteer Connect</Link>
+                    </div>
+                    <div className="nav-links">
+                        <Link to="/opportunities">Opportunities</Link>
+                        {isAuthenticated ? (
+                            <>
+                                <Link to="/opportunities/create">Create Opportunity</Link>
+                                <button onClick={handleLogout} className="btn btn-link">
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login">Login</Link>
+                                <Link to="/register">Register</Link>
+                            </>
+                        )}
+                    </div>
+                </nav>
+
+                <div className="container">
+                    <Routes>
+                        <Route path="/" element={<OpportunityList />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/opportunities" element={<OpportunityList />} />
+                        <Route path="/opportunities/:id" element={<OpportunityDetail />} />
+                        <Route path="/opportunities/create" element={<CreateOpportunity />} />
+                    </Routes>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
 export default App;

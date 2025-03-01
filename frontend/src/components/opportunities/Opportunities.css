@@ -1,0 +1,118 @@
+/* Opportunity List Styles */
+.opportunities-container {
+    padding: 20px;
+}
+
+.opportunities-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+}
+
+.opportunities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.opportunity-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.opportunity-card:hover {
+    transform: translateY(-5px);
+}
+
+.opportunity-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.opportunity-card .opportunity-details {
+    margin: 15px 0;
+}
+
+.opportunity-card .opportunity-details p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+/* Opportunity Detail Styles */
+.opportunity-detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.opportunity-detail-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.opportunity-info {
+    margin-top: 20px;
+}
+
+.opportunity-info .description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.opportunity-info .details {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.opportunity-info .details p {
+    margin: 10px 0;
+}
+
+/* Create Opportunity Styles */
+.create-opportunity-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.create-opportunity-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.create-opportunity-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.create-opportunity-container textarea {
+    min-height: 150px;
+}
+
+@media (max-width: 768px) {
+    .opportunities-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .opportunity-detail-container,
+    .create-opportunity-container {
+        margin: 20px;
+        padding: 20px;
+    }
+} 
