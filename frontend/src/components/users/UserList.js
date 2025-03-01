@@ -6,6 +6,7 @@ import './Users.css';
 const UserList = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,47 +36,115 @@ const UserList = () => {
         fetchUsers();
     }, [navigate]);
 
+    // Get user initials for avatar
+    const getInitials = (name) => {
+        if (!name) return '?';
+        return name
+            .split(' ')
+            .map(part => part[0])
+            .join('')
+            .toUpperCase()
+            .substring(0, 2);
+    };
+
+    // Format date
+    const formatDate = (dateString) => {
+        return new Date(dateString).toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: '2-digit', 
+            day: '2-digit'
+        });
+    };
+
+    // Filter users based on search term
+    const filteredUsers = users.filter(user => 
+        user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        user.interests.some(interest => interest.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
     if (loading) {
         return (
             <div className="users-container">
-                <h2>Loading users...</h2>
+                <div className="users-header">
+                    <h2>Volunteer Community</h2>
+                    <p>Connect with other volunteers and expand your network</p>
+                </div>
+                <div className="loading-container">
+                    <div className="loading">Loading volunteers...</div>
+                </div>
             </div>
         );
     }
 
     return (
         <div className="users-container">
-            <h2>Volunteer Community</h2>
-            <div className="users-grid">
-                {users.map(user => (
-                    <div key={user._id} className="user-card">
-                        <h3>{user.name}</h3>
-                        <div className="user-email">{user.email}</div>
-                        
-                        <div className="skills-section">
-                            <div className="section-title">Skills</div>
-                            <div className="tag-list">
-                                {user.skills.map((skill, index) => (
-                                    <span key={index} className="tag">{skill}</span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="interests-section">
-                            <div className="section-title">Interests</div>
-                            <div className="tag-list">
-                                {user.interests.map((interest, index) => (
-                                    <span key={index} className="tag">{interest}</span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="join-date">
-                            Joined {new Date(user.date).toLocaleDateString()}
-                        </div>
-                    </div>
-                ))}
+            <div className="users-header">
+                <h2>Volunteer Community</h2>
+                <p>Connect with other volunteers and expand your network</p>
             </div>
+
+            <div className="users-filter">
+                <input
+                    type="text"
+                    className="filter-input"
+                    placeholder="Search by name, skills or interests..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
+
+            {filteredUsers.length === 0 ? (
+                <div className="empty-state">
+                    <h3>No volunteers found</h3>
+                    <p>Try adjusting your search criteria</p>
+                </div>
+            ) : (
+                <div className="users-grid">
+                    {filteredUsers.map(user => (
+                        <div key={user._id} className="user-card">
+                            <div className="user-header">
+                                <div className="user-avatar">
+                                    {getInitials(user.name)}
+                                </div>
+                                <h3 className="user-name">{user.name}</h3>
+                            </div>
+
+                            <div className="user-content">
+                                <div className="user-section">
+                                    <div className="section-title">Skills</div>
+                                    <div className="tag-list">
+                                        {user.skills && user.skills.length > 0 ? (
+                                            user.skills.map((skill, index) => (
+                                                <span key={index} className="tag">{skill}</span>
+                                            ))
+                                        ) : (
+                                            <span className="no-tags">No skills listed</span>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="user-section">
+                                    <div className="section-title">Interests</div>
+                                    <div className="tag-list">
+                                        {user.interests && user.interests.length > 0 ? (
+                                            user.interests.map((interest, index) => (
+                                                <span key={index} className="tag">{interest}</span>
+                                            ))
+                                        ) : (
+                                            <span className="no-tags">No interests listed</span>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="join-date">
+                                Joined {formatDate(user.date)}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

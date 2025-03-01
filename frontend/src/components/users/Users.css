@@ -1,74 +1,240 @@
 .users-container {
-    padding: 20px;
+    padding: var(--spacing-xl) var(--spacing-md);
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.users-container h2 {
+.users-header {
     text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.users-header h2 {
     color: var(--primary-color);
-    margin-bottom: 30px;
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+}
+
+.users-header p {
+    color: var(--text-light);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.users-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    justify-content: center;
+}
+
+.filter-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.75rem var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-md);
+}
+
+.filter-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
 }
 
 .users-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 .user-card {
     background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    transition: transform 0.2s ease;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .user-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
 }
 
-.user-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 10px;
+.user-header {
+    padding: var(--spacing-lg);
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.user-card .user-email {
-    color: #666;
-    font-size: 0.9em;
-    margin-bottom: 15px;
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: var(--primary-light);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    margin: 0 auto var(--spacing-md);
+    box-shadow: var(--shadow-sm);
 }
 
-.user-card .skills-section,
-.user-card .interests-section {
-    margin: 15px 0;
+.user-name {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.3;
 }
 
-.user-card .section-title {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #444;
+.user-email {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-sm);
+    word-break: break-all;
+}
+
+.user-content {
+    padding: var(--spacing-lg);
+    flex: 1;
+}
+
+.user-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.user-section:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--background-color);
 }
 
 .tag-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--spacing-xs);
 }
 
 .tag {
-    background: var(--secondary-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.85em;
-    color: var(--text-color);
+    background: rgba(63, 81, 181, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.no-tags {
+    color: var(--text-light);
+    font-size: var(--font-size-sm);
+    font-style: italic;
 }
 
 .join-date {
-    margin-top: 15px;
-    font-size: 0.85em;
-    color: #888;
-    text-align: right;
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    font-size: var(--font-size-xs);
+    color: var(--text-light);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.user-actions {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.user-action-btn {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.user-action-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.loading-container, .empty-state {
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-xl);
+    text-align: center;
+    margin: var(--spacing-xl) auto;
+    max-width: 600px;
+}
+
+.loading {
+    color: var(--text-light);
+}
+
+.empty-state h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.empty-state p {
+    color: var(--text-light);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xl);
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: white;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover {
+    background-color: var(--background-color);
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {
@@ -77,6 +243,14 @@
     }
     
     .users-container {
-        padding: 10px;
+        padding: var(--spacing-md);
+    }
+    
+    .users-header h2 {
+        font-size: var(--font-size-xl);
+    }
+    
+    .filter-input {
+        width: 100%;
     }
 } 
