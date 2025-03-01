@@ -61,7 +61,7 @@ const OpportunityDetail = () => {
             <div className="opportunity-info">
                 <p className="description">{opportunity.description}</p>
                 <div className="details">
-                    <p><strong>Organization:</strong> {opportunity.organization.name}</p>
+                    <p><strong>Organization:</strong> {opportunity.organization}</p>
                     <p><strong>Location:</strong> {opportunity.location}</p>
                     <p><strong>Date:</strong> {new Date(opportunity.date).toLocaleDateString()}</p>
                     <p><strong>Skills Required:</strong> {opportunity.skillsRequired.join(', ')}</p>
