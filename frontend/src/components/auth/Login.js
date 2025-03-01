@@ -25,6 +25,8 @@ const Login = () => {
 
             const body = JSON.stringify({ email, password });
 
+            console.log(body);
+
             const res = await axios.post('http://localhost:3001/api/auth/login', body, config);
             if (res.data.token) {
                 localStorage.setItem('token', res.data.token);
@@ -32,6 +34,22 @@ const Login = () => {
             }
         } catch (err) {
             console.error(err.response.data);
+        }
+    };
+
+    const fetchUsers = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const config = {
+                headers: {
+                    'x-auth-token': token
+                }
+            };
+            const res = await axios.get('http://localhost:3001/api/auth/users', config);
+            return res.data; // Array of users
+        } catch (err) {
+            console.error(err);
+            return [];
         }
     };
 

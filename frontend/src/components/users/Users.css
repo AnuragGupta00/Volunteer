@@ -1,0 +1,82 @@
+.users-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.users-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.user-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.user-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.user-card .user-email {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.user-card .skills-section,
+.user-card .interests-section {
+    margin: 15px 0;
+}
+
+.user-card .section-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: var(--secondary-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: var(--text-color);
+}
+
+.join-date {
+    margin-top: 15px;
+    font-size: 0.85em;
+    color: #888;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .users-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .users-container {
+        padding: 10px;
+    }
+} 

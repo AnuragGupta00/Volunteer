@@ -5,6 +5,8 @@ import Login from './components/auth/Login';
 import OpportunityList from './components/opportunities/OpportunityList';
 import OpportunityDetail from './components/opportunities/OpportunityDetail';
 import CreateOpportunity from './components/opportunities/CreateOpportunity';
+import UserList from './components/users/UserList';
+import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
 import './index.css';
 
@@ -28,6 +30,8 @@ function App() {
                         <Link to="/opportunities">Opportunities</Link>
                         {isAuthenticated ? (
                             <>
+                                <Link to="/dashboard">Dashboard</Link>
+                                <Link to="/users">Community</Link>
                                 <Link to="/opportunities/create">Create Opportunity</Link>
                                 <button onClick={handleLogout} className="btn btn-link">
                                     Logout
@@ -47,9 +51,11 @@ function App() {
                         <Route path="/" element={<OpportunityList />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/opportunities" element={<OpportunityList />} />
                         <Route path="/opportunities/:id" element={<OpportunityDetail />} />
                         <Route path="/opportunities/create" element={<CreateOpportunity />} />
+                        <Route path="/users" element={<UserList />} />
                     </Routes>
                 </div>
             </div>
