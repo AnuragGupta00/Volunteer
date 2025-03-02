@@ -51,71 +51,107 @@ const CreateOpportunity = () => {
     };
 
     return (
-        <div className="create-opportunity-container">
-            <h2>Create New Volunteer Opportunity</h2>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        name="title"
-                        value={title}
-                        onChange={onChange}
-                        required
-                    />
+        <div className="page-container">
+            <div className="create-opportunity-container">
+                <div className="page-header">
+                    <h1>Create New Volunteer Opportunity</h1>
+                    <p>Fill out the form below to create a new volunteer opportunity for the community.</p>
                 </div>
-                <div className="form-group">
-                    <textarea
-                        placeholder="Description"
-                        name="description"
-                        value={description}
-                        onChange={onChange}
-                        required
-                    />
+                
+                <div className="form-card">
+                    <form onSubmit={onSubmit} className="opportunity-form">
+                        <div className="form-group">
+                            <label htmlFor="title">Opportunity Title</label>
+                            <input
+                                type="text"
+                                id="title"
+                                placeholder="Enter a descriptive title"
+                                name="title"
+                                value={title}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="description">Description</label>
+                            <textarea
+                                id="description"
+                                placeholder="Describe the volunteer opportunity in detail"
+                                name="description"
+                                value={description}
+                                onChange={onChange}
+                                rows="5"
+                                required
+                            />
+                            <small>Include important details like responsibilities, impact, and time commitment.</small>
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="skillsRequired">Skills Required</label>
+                            <input
+                                type="text"
+                                id="skillsRequired"
+                                placeholder="Communication, Leadership, Teamwork, etc."
+                                name="skillsRequired"
+                                value={skillsRequired}
+                                onChange={onChange}
+                                required
+                            />
+                            <small>Enter skills separated by commas</small>
+                        </div>
+                        
+                        <div className="form-row">
+                            <div className="form-group">
+                                <label htmlFor="cause">Cause Area</label>
+                                <input
+                                    type="text"
+                                    id="cause"
+                                    placeholder="Education, Environment, Health, etc."
+                                    name="cause"
+                                    value={cause}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+                            
+                            <div className="form-group">
+                                <label htmlFor="location">Location</label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    placeholder="City, State or Remote"
+                                    name="location"
+                                    value={location}
+                                    onChange={onChange}
+                                    required
+                                />
+                            </div>
+                        </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="date">Event Date</label>
+                            <input
+                                type="date"
+                                id="date"
+                                name="date"
+                                value={date}
+                                onChange={onChange}
+                                required
+                            />
+                        </div>
+                        
+                        <div className="form-actions">
+                            <button type="button" className="btn btn-secondary" onClick={() => navigate('/opportunities')}>
+                                Cancel
+                            </button>
+                            <button type="submit" className="btn btn-primary">
+                                Create Opportunity
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        placeholder="Skills Required (comma-separated)"
-                        name="skillsRequired"
-                        value={skillsRequired}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        placeholder="Cause"
-                        name="cause"
-                        value={cause}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="text"
-                        placeholder="Location"
-                        name="location"
-                        value={location}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <input
-                        type="date"
-                        name="date"
-                        value={date}
-                        onChange={onChange}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary">
-                    Create Opportunity
-                </button>
-            </form>
+            </div>
         </div>
     );
 };

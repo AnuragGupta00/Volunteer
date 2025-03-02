@@ -51,7 +51,7 @@ const Register = () => {
                 interests: interests.split(',').map(interest => interest.trim())
             });
 
-            const res = await axios.post('/api/auth/register', body, config);
+            const res = await axios.post('http://localhost:3001/api/auth/register', body, config);
             if (res.data.token) {
                 localStorage.setItem('token', res.data.token);
                 setLoading(false);
